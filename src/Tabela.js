@@ -1,26 +1,37 @@
-function Tabela(){
+function Tabela({vetor, selecionar}){
+
     return(
-        <table className='table'>
+        <div className="table-barra-rolagem">
+        <table className='table table-striped table-bordered table-condensed table-hover'>
             <thead>
                 <tr>
-                    <th>#</th>
+                    <th>Id</th>
                     <th>Local</th>
-                    <th>Descrição Problema</th>
+                    <th>Descrição do problema</th>
+                    <th>Status</th>
                     <th>Data</th>
-                    <th>Selecionar</th>
+                    <th>Ação</th>
                 </tr>
             </thead>
 
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Sec. de Educação</td>
-                    <td>Sem conexão com a internet</td>
-                    <td>2022-12-28</td>
-                    <td>Botão</td>
-                </tr>
+                
+                {
+                    vetor.map((obj, indice) => (
+                        <tr key={indice}>
+                            {/* <td>{indice+1}</td> */}
+                            <td>{obj.codigo}</td>
+                            <td>{obj.local}</td>
+                            <td>{obj.descric_problem}</td>
+                            <td>{obj.status}</td>
+                            <td>{obj.data}</td>
+                            <td><button onClick={() => {selecionar(indice)}} className="btn btn-success">Selecionar</button></td>
+                        </tr>
+                    )).reverse()
+                }
             </tbody>
         </table>
+        </div>
     )
 }
 
